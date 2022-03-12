@@ -36,19 +36,19 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Classes="t" Grid.Column="0"></TextBox>
-			<TextBox Classes="t" Grid.Column="1"></TextBox>
+			<TextBox Classes="t" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding Text}"></TextBox>
+			<TextBox Classes="t" Grid.Column="1" Focusable="False"></TextBox>
 		</Grid>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<Button  Classes="b" Grid.Column="0" Content="Open File"></Button>
-			<Button  Classes="b" Grid.Column="1" Content="Save File"></Button>
+			<Button Name="OpenFile" Classes="b" Grid.Column="0" Content="Open File"></Button>
+			<Button Name="SaveFile" Classes="b" Grid.Column="1" Content="Save File"></Button>
 		</Grid>
 
-		<Button Classes="b" Grid.Row="2" Content="Set Regex"></Button>
+		<Button Name="SetRegex" Classes="b" Grid.Row="2" Content="Set Regex" Click="OpenSubWindowRegex"></Button>
 
 	</Grid>
 
