@@ -27,7 +27,7 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<TextBox Classes="t" Grid.Row="0" Text="{Binding Regex}"/>
+		<TextBox Classes="t" Grid.Row="0" Text="{Binding RegexStringNew}"/>
 		<Button Name="OkButton" Classes="b" Grid.Row="1" Content="OK"/>
 		<Button Name="CancelButton" Classes="b" Grid.Row="2" Content="Cancel"/>
 

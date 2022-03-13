@@ -36,8 +36,8 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Classes="t" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding Text}"></TextBox>
-			<TextBox Classes="t" Grid.Column="1" Focusable="False"></TextBox>
+			<TextBox Classes="t" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding TextIn}"></TextBox>
+			<TextBox Classes="t" Grid.Column="1" Focusable="False" Text="{Binding TextOut}"></TextBox>
 		</Grid>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>

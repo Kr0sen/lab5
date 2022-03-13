@@ -26,7 +26,7 @@ namespace lab5.Views
                  string[]? path = await taskPath;
 
                  var context = this.DataContext as MainWindowViewModel;
-                 context.Path = path is null ? null : string.Join(@"\", path);
+                 context.PathOpen = path is null ? null : string.Join(@"\", path);
              };
             this.FindControl<Button>("SaveFile").Click += async delegate
              {
@@ -39,7 +39,7 @@ namespace lab5.Views
                  string[]? path = await taskPath;
 
                  var context = this.DataContext as MainWindowViewModel;
-                 context.Path = path is null ? null : string.Join(@"\", path);
+                 context.PathSave = path is null ? null : string.Join(@"\", path);
              };
         }
 
@@ -47,11 +47,6 @@ namespace lab5.Views
         {
             var w = new SubWindowRegex();
             w.DataContext = this.DataContext as MainWindowViewModel;
-            w.OkRegexChange += delegate (string reg)
-            {
-                var context = this.DataContext as MainWindowViewModel;
-                context.Regex = reg;
-            };
             w.ShowDialog((Window)this.VisualRoot);
         }
 

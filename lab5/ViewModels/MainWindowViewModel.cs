@@ -1,64 +1,102 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Reactive;
 using ReactiveUI;
 
 namespace lab5.ViewModels
 {
-
     public class MainWindowViewModel : ViewModelBase
     {
-        string? path;
-        public string Path
+        public const int maxCharAmount = 5000;
+        public string? PathOpen
         {
-            get
-            {
-                return path;
-            }
+            get { return null; }
             set
             {
-                path = value;
+                if (value is not null && File.Exists(value))
+                {
+                    using (StreamReader sr = File.OpenText(value))
+                    {
+                        TextIn = sr.ReadToEnd();
+                    }
+                }
+            }
+        }
+        public string? PathSave
+        {
+            get { return null; }
+            set
+            {
+                if (value is not null)
+                    using (StreamWriter sw = File.CreateText(value))
+                    {
+                        sw.Write(TextOut);
+                    }
             }
         }
 
-        string text = "";
-        public string Text
+        string textIn = "";
+        public string TextIn
         {
             get
             {
-                return text;
+                return textIn;
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref text, value);
+                this.RaiseAndSetIfChanged(ref textIn, value);
+                TextOut = "";
+                foreach (Match match in Regex.Matches(value, RegexString, RegexOptions.IgnoreCase))
+                {
+                    TextOut += $"{match.Value}\n";
+                }
             }
         }
 
-        string regex = "";
-        public string Regex
+        string textOut = "";
+        public string TextOut
         {
             get
             {
-                return regex;
+                return textOut;
             }
             set
             {
-                regex = value;
+                this.RaiseAndSetIfChanged(ref textOut, value);
             }
         }
 
-        string regexNew = "";
-        public string RegexNew
+        string regexString = "";
+        public string RegexString
         {
             get
             {
-                return regexNew;
+                return regexString;
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref regexNew, value);
+                regexString = value;
+                TextOut = "";
+                foreach (Match match in Regex.Matches(TextIn, value, RegexOptions.IgnoreCase))
+                {
+                    TextOut += $"{match.Value}\n";
+                }
+            }
+        }
+        string regexStringNew = "";
+        public string RegexStringNew
+        {
+            get
+            {
+                return regexStringNew;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref regexStringNew, value);
             }
         }
     }
